@@ -40,5 +40,17 @@ def ratios_enum(anchor, ratios):
 
 
 if __name__ == '__main__':
-    anchors = generate_anchors()
-    print(anchors)
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots()
+    image = np.ones((1000, 1000, 3))
+
+    colors = 'rrrgggbbb'
+    anchors = generate_anchors() + 500
+
+    for i, anchor in enumerate(anchors):
+        x1, y1, x2, y2 = anchor
+        ax.add_patch(plt.Rectangle((x1, y1), x2 - x1, y2 - y1, edgecolor=colors[i], fill=False))
+
+    plt.imshow(image)
+    plt.show()
